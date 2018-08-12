@@ -34,6 +34,26 @@ class StartPrompt extends Piece {
   }
 }
 
-let pieces = {Blank, MainTitle, StartPrompt}
+class PlayerShip extends Piece {
+  constructor () {
+    super()
+    this.sprite = ['[ ]',
+                   '\\@/',
+                   ' V ']
+    this.shape =  ['1 1',
+                   '111',
+                   ' 1 ']
+  }
+}
+
+class Wall extends Piece {
+  constructor () {
+    super()
+    this.sprite = ['#']
+    this.shape =  ['1']
+  }
+}
+
+let pieces = {Blank, MainTitle, StartPrompt, PlayerShip, Wall}
 
 export default pieces

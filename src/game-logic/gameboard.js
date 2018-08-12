@@ -5,6 +5,10 @@ const boardWidth = 80
 
 class Spot {
   constructor (piece, subY, subX) {
+    this.update(piece, subY, subX)
+  }
+
+  update (piece, subY, subX) {
     this.piece = piece
     this.subY = subY
     this.subX = subX
@@ -18,10 +22,15 @@ class Gameboard {
     this.worldY = 0 // vertical scroll distance
 
     // fill the board with empty pieces
-    this.board = []
+    this.board = this.newBoard()
+  }
+
+  newBoard () {
+    let board = []
     for (let y = 0; y < this.boardHeight; y++) {
-      this.board.push(this.newRow())
+      board.push(this.newRow())
     }
+    return board
   }
 
   newRow () {
@@ -32,6 +41,11 @@ class Gameboard {
       row.push(spot)
     }
     return row
+  }
+
+  setBoard (filledBoard) {
+    this.worldY = 0
+    this.board = filledBoard
   }
 
   placePiece (piece, startY, startX) {
@@ -47,25 +61,11 @@ class Gameboard {
     }
   }
 
-  // removePiece (piece) {
-  //   // I know this is a terrible algirithm :)
-  //   for (let y = 0; y < this.boardHeight; y++) {
-  //     for (let x = 0; x < this.boardWidth; x++) {
-  //       let spot = this.board[y][x]
-  //       if (spot.piece === piece) {
-  //         spot.piece = new pieces.Blank()
-  //         spot.subY = 0
-  //         spot.subX = 0
-  //       }
-  //     }
-  //   }
-  // }
-
-  removePieceAt (piece, y, x) {
+  removePieceAt (piece, boardY, boardX) {
     for (let y = 0; y < piece.shape.length; y++) {
       for (let x = 0; x < piece.shape[y].length; x++) {
         if (piece.shape[y][x] === '1') {
-          let spot = this.board[startY + y][startX + x]
+          let spot = this.board[boardY + y][boardX + x]
           spot.piece = new pieces.Blank()
           spot.subY = 0
           spot.subX = 0
@@ -75,8 +75,12 @@ class Gameboard {
   }
 
   movePieceAtTo (piece, atY, atX, toY, toX) {
-    self.removePieceAt(piece, atY, atX)
-    self.placePiece(piece, toY, toX)
+    this.removePieceAt(piece, atY, atX)
+    this.placePiece(piece, toY, toX)
+  }
+
+  addRow (filledRow) {
+    this.board.push(filledRow)
   }
 
   scroll (gameManager) {
@@ -86,7 +90,6 @@ class Gameboard {
       topRow[x].piece.onExit(gameManager)
     }
     this.board.shift() // remove the top row
-    this.board.push(this.newRow())
     this.worldY++
   }
 

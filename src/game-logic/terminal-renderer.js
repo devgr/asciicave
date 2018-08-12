@@ -4,7 +4,7 @@ class TerminalRenderer {
     this.domController = domController
   }
 
-  render () {
+  render (ui) {
     let board = this.gameboard.board
     let output = ''
 
@@ -20,6 +20,7 @@ class TerminalRenderer {
     }
 
     this.domController.updateTerminal(output)
+    this.domController.updateScore(ui)
   }
 }
 

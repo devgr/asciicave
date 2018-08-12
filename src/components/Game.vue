@@ -1,11 +1,13 @@
 <template>
-  <div class="hello">
+  <div>
     <pre>{{ terminal }}</pre>
+    <br />
+    <pre>{{ score }}</pre>
   </div>
 </template>
 
 <script>
-import gameMain from '@/game-logic/main'
+import GameMain from '@/game-logic/main'
 export default {
   name: 'Game',
   data () {
@@ -18,17 +20,22 @@ export default {
     }
 
     return {
-      terminal: initialScreen
+      terminal: initialScreen,
+      score: ' '
     }
   },
   methods: {
     updateTerminal (text) {
       this.terminal = text
+    },
+    updateScore (text) {
+      this.score = text
     }
   },
   created () {
     // send a reference to this to the game main function, and start the game.
-    gameMain(this)
+    // Yay depenency speghetti!
+    this.game = new GameMain(this)
   }
 }
 </script>
