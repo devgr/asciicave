@@ -53,6 +53,9 @@ class Gameboard {
       for (let x = 0; x < piece.shape[y].length; x++) {
         if (piece.shape[y][x] === '1') {
           let spot = this.board[startY + y][startX + x]
+          if (spot.piece instanceof pieces.Grain) {
+            this.worldY++
+          }
           spot.piece = piece
           spot.subY = y
           spot.subX = x
@@ -90,7 +93,6 @@ class Gameboard {
       topRow[x].piece.onExit(gameManager)
     }
     this.board.shift() // remove the top row
-    this.worldY++
   }
 
 }

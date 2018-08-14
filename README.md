@@ -1,4 +1,4 @@
-# ASCII CAVE
+# ASCII FARMER
 
 ## Project setup
 ```

@@ -13,8 +13,8 @@ class Blank extends Piece {
 class MainTitle extends Piece {
   constructor () {
     super()
-    this.sprite = ['ASCII CAVE']
-    this.shape =  ['1111111111']
+    this.sprite = ['ASCII FARMER']
+    this.shape =  ['111111111111']
     this.alreadyExited = false
   }
 
@@ -46,6 +46,22 @@ class PlayerShip extends Piece {
   }
 }
 
+class PlayerTractor extends Piece {
+  constructor () {
+    super()
+    this.sprite = ['(((((((',
+                   '   |   ',
+                   ' []H[] ',
+                   '   H   ',
+                   '  {=}  ']
+    this.shape =  ['1111111',
+                   '   1   ',
+                   ' 11111 ',
+                   '   1   ',
+                   '  111  ']
+  }
+}
+
 class Wall extends Piece {
   constructor () {
     super()
@@ -54,6 +70,14 @@ class Wall extends Piece {
   }
 }
 
-let pieces = {Blank, MainTitle, StartPrompt, PlayerShip, Wall}
+class Grain extends Piece {
+  constructor () {
+    super()
+    this.sprite = ['#']
+    this.shape =  ['1']
+  }
+}
+
+let pieces = {Blank, MainTitle, StartPrompt, PlayerShip, Wall, Grain, PlayerTractor}
 
 export default pieces

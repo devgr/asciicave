@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h1>ASCII CAVE</h1>
+    <h1>ASCII FARMER</h1>
     <Game />
     <br />
     <pre>{{ instructions }}</pre>

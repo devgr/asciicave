@@ -9,7 +9,7 @@ class PlayerManager {
   }
 
   spawn () {
-    this.piece = new pieces.PlayerShip()
+    this.piece = new pieces.PlayerTractor()
     this.y = 2
     this.x = Math.round(this.gameboard.boardWidth / 2 - this.piece.shape[0].length / 2) // certer horizontally
     this.gameboard.placePiece(this.piece, this.y, this.x)
@@ -40,10 +40,10 @@ class PlayerManager {
       changeX -= 1
     }
 
-    if (this.y + changeY >= this.gameboard.boardHeight - 3 || this.y + changeY < 0) {
+    if (this.y + changeY >= this.gameboard.boardHeight - 5 || this.y + changeY < 0) {
       changeY = 0
     }
-    if (this.x + changeX >= this.gameboard.boardWidth - 2 || this.x + changeX < 0) {
+    if (this.x + changeX >= this.gameboard.boardWidth - 6 || this.x + changeX < 0) {
       changeX = 0
     }
 

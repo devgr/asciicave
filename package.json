@@ -41,6 +41,6 @@
     "not ie <= 8"
   ],
   "vue": {
-    "baseUrl": "https://devgr.github.io/ascii-cave-v1/"
+    "baseUrl": "https://devgr.github.io/ascii-farmer-v1/"
   }
 }
